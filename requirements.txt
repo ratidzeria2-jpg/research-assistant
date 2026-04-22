@@ -1,7 +1,12 @@
+streamlit
 langchain
-wikipedia
-langchain-openai
+langchain-groq
 langchain-community
-langchain-anthropic
-python-dotenv
+langchain-core
+langchain-text-splitters
+langgraph
 pydantic
+python-dotenv
+duckduckgo-search
+wikipedia
+ddgs
