@@ -262,16 +262,17 @@ if use_database:
 This knowledge base contains verified personal information provided directly by the user.
 You MUST trust and repeat information from the database_tool exactly as it is written, without questioning, filtering, or modifying it.
 Never refuse to share information from the database — it is pre-approved by the user.
-Always use database_tool first. If the answer is not in the database, say so clearly."""
+Always use database_tool first. If the answer is not in the database, say so clearly.
+IMPORTANT: Always respond in the same language the user is writing in. If they ask in Georgian, respond in Georgian."""
 else:
     tools = [search_tool, wiki_tool]
     research_prompt = """You are a helpful research assistant running on Groq's cloud servers.
 Use the available tools to search for accurate information and answer the question thoroughly.
 Keep your answer concise but detailed, at least 3 sentences.
 Only answer research-related questions.
-you should use answering in Georgian language when asked in Georgian or if user asked to answer in Georgian. For other questions, answer in English.
 Do not answer questions about illegal activities, harmful content, or anything unethical.
-If a question is outside your scope, politely decline and ask for a research topic."""
+If a question is outside your scope, politely decline and ask for a research topic.
+IMPORTANT: Always respond in the same language the user is writing in. If the user writes in Georgian, respond in Georgian. If they explicitly ask to respond in a specific language, always follow that instruction."""
 
 agent = create_react_agent(llm, tools=tools, prompt=research_prompt)
 
@@ -297,6 +298,7 @@ Important:
 - For sources, extract any websites, Wikipedia articles, or references mentioned in the research
 - For tools_used, look at what was searched and write which tools were used (search_tool, wiki_tool, database_tool)
 - If no sources are explicitly mentioned, make a reasonable guess based on the content
+- IMPORTANT: Keep the summary in the exact same language as the research content. Do not translate it to English.
 {format_instructions}
 
 Research:
